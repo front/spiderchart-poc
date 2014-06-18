@@ -14,7 +14,7 @@ function buildSpiderChart (data) {
     now: [], desired: []
   };
 
-  for (var i = entries.length - 1; i >= 0; i--) {
+  for (var i = 0, l = entries.length; i<l; i++ ) {
     var entry = entries[i];
     // console.log( entry );
 
@@ -34,7 +34,7 @@ function buildSpiderChart (data) {
   var maxValue = entries.length * maxQuestion;
 
   var d = [[],[]];
-  for(var k = 0; k < 8; k++) {
+  for(var k = 0; k < numQuestions; k++) {
     d[0].push({
       axis: 'Question ' + (k+1),
       value: normalized.now[k] / maxValue
