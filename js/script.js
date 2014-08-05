@@ -52,7 +52,8 @@ function buildSpiderChart (data) {
     h: h,
     maxValue: 1,
     levels: 6,
-    ExtraWidthX: 150
+    ExtraWidthX: 150,
+    opacityArea: 0
   };
 
   //Call function to draw the Radar chart
