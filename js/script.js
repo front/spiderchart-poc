@@ -2,6 +2,7 @@
 function buildSpiderChart (data) {
   var numQuestions = 8;
   var maxQuestion = 6;
+  var yAxisMaxValue = 5;
   var legendOptions = ['NÅ-situasjon','Ønsket situasjon'];
   var w = 500, h = 500;
 
@@ -16,18 +17,21 @@ function buildSpiderChart (data) {
 
   for (var i = 0, l = entries.length; i<l; i++ ) {
     var entry = entries[i];
-    // console.log( entry );
+    //console.log( entry );
 
     for(var j = 0; j < numQuestions; j++) {
       var sufx = !j ? '' : '_' + (j+1);
       var k0 = 'gsx$nå-situasjon' + sufx;
       var k1 = 'gsx$ønsketsituasjon' + sufx;
 
+
       normalized.now[j] = (normalized.now[j] || 0) + parseInt(entry[k0].$t);
       normalized.desired[j] = (normalized.desired[j] || 0) + parseInt(entry[k1].$t);
     }
   }
+
   console.log('Normalized:', normalized);
+
 
 
   //2. Convert the data structure To D3 format
@@ -36,12 +40,12 @@ function buildSpiderChart (data) {
   var d = [[],[]];
   for(var k = 0; k < numQuestions; k++) {
     d[0].push({
-      axis: 'Question ' + (k+1),
-      value: normalized.now[k] / maxValue
+      axis: 'Question' + (k+1) + ' (' + ((normalized.now[k] / maxValue) * yAxisMaxValue).toFixed(2) + ')',
+      value: (normalized.now[k] / maxValue) * yAxisMaxValue
     });
     d[1].push({
-      axis: 'Question ' + (k+1),
-      value: normalized.desired[k] / maxValue
+      axis: 'Question ' + (k+1) + '  (' +((normalized.desired[k] / maxValue) * yAxisMaxValue).toFixed(2) + ')',
+      value: (normalized.desired[k] / maxValue) * yAxisMaxValue
     });
   }
   console.log('D3 data:', d);
@@ -100,3 +104,17 @@ function buildSpiderChart (data) {
     ;
 
 }
+
+
+Array.prototype.sum = function(selector) {
+  if (typeof selector !== 'function') {
+    selector = function(item) {
+      return item;
+    }
+  }
+  var sum = 0;
+  for (var i = 0; i < this.length; i++) {
+    sum += selector(this[i]);
+  }
+  return sum;
+};
