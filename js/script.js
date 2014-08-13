@@ -24,9 +24,8 @@ function buildSpiderChart (data) {
       var k0 = 'gsx$nå-situasjon' + sufx;
       var k1 = 'gsx$ønsketsituasjon' + sufx;
 
-
-      normalized.now[j] = (normalized.now[j] || 0) + parseInt(entry[k0].$t);
-      normalized.desired[j] = (normalized.desired[j] || 0) + parseInt(entry[k1].$t);
+      normalized.now[j] = (normalized.now[j] || 0) + parseInt(entry[k0] && entry[k0].$t || 0);
+      normalized.desired[j] = (normalized.desired[j] || 0) + parseInt(entry[k1] && entry[k1].$t || 0);
     }
   }
 
