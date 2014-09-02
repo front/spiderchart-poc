@@ -186,7 +186,7 @@ function buildLegend (legend, questions, indexes) {
 
 function buildSpiderChart (data) {
   var maxQuestion = 5;
-  var legend = ['NÅ-situasjon','Ønsket situasjon'];
+  var legend = ['Nå-situasjon','Ønsket situasjon'];
 
   var entries = data.feed.entry;
   console.log('Entries:', data.feed.entry);

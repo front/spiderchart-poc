@@ -10,7 +10,7 @@ body {
   position: relative;
   width: 100%;
   max-width: 1090px;
-  margin: 20px auto;
+  margin: 20px auto 0;
 }
 
 .wrapper:after {
