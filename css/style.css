@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica;
@@ -5,14 +6,45 @@ body {
 }
 
 .wrapper {
+  /*border: 1px solid green;*/
+  position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1090px;
   margin: 20px auto;
+}
+
+.wrapper:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+h2 {
   text-align: center;
 }
 
-#chart {
+.chart {
+  /*border: 1px solid red;*/
+  float: left;
   position: relative;
-  /*top: 50px;
-  left: 100px;*/
+  width: 650px;
+  height: 600px;
+}
+
+.legend {
+  /*border: 1px solid blue;*/
+  float: left;
+  margin: 0 0 0 50px;
+  padding: 0;
+  width: 390px;
+  list-style: none;
+}
+
+.legend.middle {
+  margin-top: 170px;
+}
+
+.legend li {
+  margin-top: 2px;
+  font-size: 13px;
 }

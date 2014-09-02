@@ -1,0 +1,13 @@
+
+Retrieve the id
+
+https://spreadsheets.google.com/feeds/worksheets/1sfKZMmHCCtbcjTvVXghV5KnBypvy2CEz-Gu0NToyvTc/private/full
+
+Use the id
+
+https://spreadsheets.google.com/feeds/list/1sfKZMmHCCtbcjTvVXghV5KnBypvy2CEz-Gu0NToyvTc/o310w6u/public/values?alt=json-in-script
+
+
+Or default
+
+https://spreadsheets.google.com/feeds/list/1sfKZMmHCCtbcjTvVXghV5KnBypvy2CEz-Gu0NToyvTc/default/public/values?alt=json-in-script&callback=hello
