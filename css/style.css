@@ -9,7 +9,7 @@ body {
   /*border: 1px solid green;*/
   position: relative;
   width: 100%;
-  max-width: 1090px;
+  max-width: 1180px;
   margin: 20px auto 0;
 }
 
@@ -36,15 +36,15 @@ h2 {
   float: left;
   margin: 0 0 0 50px;
   padding: 0;
-  width: 390px;
+  width: 480px;
   list-style: none;
 }
 
 .legend.middle {
-  margin-top: 170px;
+  margin-top: 150px;
 }
 
 .legend li {
-  margin-top: 2px;
-  font-size: 13px;
+  margin-top: 5px;
+  font-size: 15px;
 }
