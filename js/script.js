@@ -39,7 +39,7 @@ function normalizeData (entries, questions) {
       m = parseInt(entry[k2] && entry[k2].$t);
 
       if(n) {
-        normalized.now[j] = (normalized.now[j] || 0) + (n || 0);
+        normalized.now[j] = (normalized.now[j] || 0) + n - 1;
         normalized.nowTotal[j] = (normalized.nowTotal[j] || 0) + 1;
       }
       // else {
@@ -47,7 +47,7 @@ function normalizeData (entries, questions) {
       // }
 
       if(m) {
-        normalized.desired[j] = (normalized.desired[j] || 0) + (m || 0);
+        normalized.desired[j] = (normalized.desired[j] || 0) + m - 1;
         normalized.desTotal[j] = (normalized.desTotal[j] || 0) + 1;
       }
       // else {
@@ -122,8 +122,8 @@ function buildChart(div, d, legendTxt) {
   var mycfg = {
     w: w,
     h: h,
-    maxValue: 5,
-    levels: 5,
+    maxValue: 4,
+    levels: 4,
     ExtraWidthX: 150,
     opacityArea: 0
   };

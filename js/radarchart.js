@@ -71,7 +71,7 @@ var RadarChart = {
   }
 
   //Text indicating at what % each level is
-  for(var j=0; j<cfg.levels; j++){
+  for(var j=-1; j<cfg.levels; j++){
     var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
     g.selectAll(".levels")
      .data([1]) //dummy data
@@ -84,7 +84,7 @@ var RadarChart = {
      .style("font-size", "10px")
      .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
      .attr("fill", "#737373")
-     .text(Format((j+1)*cfg.maxValue/cfg.levels));
+     .text(Format((j+2)*cfg.maxValue/cfg.levels));
   }
 
   series = 0;
@@ -187,7 +187,7 @@ var RadarChart = {
           tooltip
             .attr('x', newX)
             .attr('y', newY)
-            .text(Format(d.value))
+            .text( (parseFloat(d.value)+1).toFixed(2).toString() )
             .transition(200)
             .style('opacity', 1);
 
@@ -208,7 +208,7 @@ var RadarChart = {
             .style("fill-opacity", cfg.opacityArea);
           })
     .append("svg:title")
-    .text(function(j){return Math.max(j.value, 0)});
+    .text(function(j){return (Math.max(j.value, 0)+1).toFixed(2)});
 
     series++;
   });
