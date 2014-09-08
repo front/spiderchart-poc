@@ -20,7 +20,9 @@ function retrieveQuestions (entries) {
 function normalizeData (entries, questions) {
   var normalized = {
     now: [],
-    desired: []
+    desired: [],
+    nowTotal: [],
+    desTotal: []
   };
   var i, j, k, l, s, k1, k2, m, n;
 
@@ -36,29 +38,35 @@ function normalizeData (entries, questions) {
       n = parseInt(entry[k1] && entry[k1].$t);
       m = parseInt(entry[k2] && entry[k2].$t);
 
-      // if(!n) {
+      if(n) {
+        normalized.now[j] = (normalized.now[j] || 0) + (n || 0);
+        normalized.nowTotal[j] = (normalized.nowTotal[j] || 0) + 1;
+      }
+      // else {
       //   console.log('Error (n)', n, entry[k1] && entry[k1].$t );
       // }
-      // if(!m) {
+
+      if(m) {
+        normalized.desired[j] = (normalized.desired[j] || 0) + (m || 0);
+        normalized.desTotal[j] = (normalized.desTotal[j] || 0) + 1;
+      }
+      // else {
       //   console.log('Error (m)', m, entry[k2] && entry[k2].$t );
       // }
-
-      normalized.now[j] = (normalized.now[j] || 0) + (n || 0);
-      normalized.desired[j] = (normalized.desired[j] || 0) + (m || 0);
     }
   }
   return normalized;
 }
 
 
-function convertToD3 (normalized, questions, maxValue, yAxisMaxValue) {
+function convertToD3 (normalized, questions) {
   var d = [[],[]];
   var x = [], small = [[],[]], smallIdx = [], large = [[],[]], largeIdx = [], i;
   var k, l, vnow, vdes, gap;
 
   for(k = 0, l = questions.length; k < l; k++) {
-    vnow = ((normalized.now[k] / maxValue) * yAxisMaxValue).toFixed(2);
-    vdes = ((normalized.desired[k] / maxValue) * yAxisMaxValue).toFixed(2)
+    vnow = (normalized.now[k] / normalized.nowTotal[k]).toFixed(2);
+    vdes = (normalized.desired[k] / normalized.desTotal[k]).toFixed(2);
     gap = (vdes - vnow).toFixed(2);
 
     d[0].push({
@@ -185,11 +193,9 @@ function buildLegend (legend, questions, indexes) {
 
 
 function buildSpiderChart (data) {
-  var maxQuestion = 5;
   var legend = ['Nå-situasjon','Ønsket situasjon'];
-
   var entries = data.feed.entry;
-  console.log('Entries:', data.feed.entry);
+  console.log('Entries:', entries, entries.length);
 
 
   // 0. Retrieve the question names
@@ -203,8 +209,7 @@ function buildSpiderChart (data) {
 
 
   //2. Convert the data structure To D3 format
-  var maxValue = (entries.length-1) * maxQuestion;
-  var d = convertToD3(normalized, questions, maxValue, maxQuestion);
+  var d = convertToD3(normalized, questions);
   console.log('D3 data:', d);
 
 
