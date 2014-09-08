@@ -61,7 +61,7 @@ function normalizeData (entries, questions) {
 
 function convertToD3 (normalized, questions) {
   var d = [[],[]];
-  var x = [], small = [[],[]], smallIdx = [], large = [[],[]], largeIdx = [], i;
+  var x = [], small = [[],[]], smallIdx = [], large = [[],[]], largeIdx = [], seven = [[],[]], sevenIdx = [], i;
   var k, l, vnow, vdes, gap;
 
   for(k = 0, l = questions.length; k < l; k++) {
@@ -90,19 +90,27 @@ function convertToD3 (normalized, questions) {
     return a.gap - b.gap;
   });
 
-  // Selected the 5 smallest gaps and the 5 largest gaps
-  for(i = 0, l = x.length; i < 5 && i < l ; i++) {
-    // Small
-    k = x[i].idx;
-    small[0].push( d[0][k] );
-    small[1].push( d[1][k] );
-    smallIdx.push(k);
+  // Selected the 5 smallest gaps, 5 largest gaps, and 7 largest gaps
+  for(i = 0, l = x.length; i < 7 && i < l ; i++) {
+    if(i<5) {
+      // Small
+      k = x[i].idx;
+      small[0].push( d[0][k] );
+      small[1].push( d[1][k] );
+      smallIdx.push(k);
 
-    // Large
+      // Large
+      k = x[l-i-1].idx;
+      large[0].push( d[0][k] );
+      large[1].push( d[1][k] );
+      largeIdx.push(k);
+    }
+
+    // 7 large
     k = x[l-i-1].idx;
-    large[0].push( d[0][k] );
-    large[1].push( d[1][k] );
-    largeIdx.push(k);
+    seven[0].push( d[0][k] );
+    seven[1].push( d[1][k] );
+    sevenIdx.push(k);
   }
 
   return {
@@ -110,7 +118,9 @@ function convertToD3 (normalized, questions) {
     small: small,
     smallIdx: smallIdx,
     large: large,
-    largeIdx: largeIdx
+    largeIdx: largeIdx,
+    seven: seven,
+    sevenIdx: sevenIdx
   };
 }
 
@@ -220,6 +230,8 @@ function buildSpiderChart (data) {
 
   buildChart('#chart-3', d.large, legend);
 
+  buildChart('#chart-4', d.seven, legend);
+
 
   //4. Build legend
   buildLegend('#legend-1', questions);
@@ -227,4 +239,6 @@ function buildSpiderChart (data) {
   buildLegend('#legend-2', questions, d.smallIdx);
 
   buildLegend('#legend-3', questions, d.largeIdx);
+
+  buildLegend('#legend-4', questions, d.sevenIdx);
 }
