@@ -90,8 +90,8 @@ function convertToD3 (normalized, questions) {
     return a.gap - b.gap;
   });
 
-  // Selected the 5 smallest gaps, 5 largest gaps, and 7 largest gaps
-  for(i = 0, l = x.length; i < 7 && i < l ; i++) {
+  // Selected the 5 smallest gaps, 5 largest gaps, and 8 largest gaps
+  for(i = 0, l = x.length; i < 8 && i < l ; i++) {
     if(i<5) {
       // Small
       k = x[i].idx;
@@ -106,7 +106,7 @@ function convertToD3 (normalized, questions) {
       largeIdx.push(k);
     }
 
-    // 7 large
+    // 8 large
     k = x[l-i-1].idx;
     seven[0].push( d[0][k] );
     seven[1].push( d[1][k] );
