@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>DNVGL Spiderchart</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h2>All gaps</h2>
+    <div id="chart-1" class="chart"></div>
+    <ul id="legend-1" class="legend"></ul>
+  </div>
+
+  <div class="wrapper">
+    <h2>Five smallest gaps</h2>
+    <div id="chart-2" class="chart"></div>
+    <ul id="legend-2" class="legend middle"></ul>
+  </div>
+
+  <div class="wrapper">
+    <h2>Five largest gaps</h2>
+    <div id="chart-3" class="chart"></div>
+    <ul id="legend-3" class="legend middle"></ul>
+  </div>
+
+  <div class="wrapper">
+    <h2>Eight largest gaps</h2>
+    <div id="chart-4" class="chart"></div>
+    <ul id="legend-4" class="legend middle"></ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="../js/radarchart.js"></script>
+  <script src="../js/app-v3.js"></script>
+
+  <script src="https://spreadsheets.google.com/feeds/list/1QIwaYrzT3xLF1wDLMCPG8ghb9Z91MfA3Ai8z89yfzo0/default/public/values?alt=json-in-script&callback=buildSpiderChart"></script>
+</body>
+</html>
