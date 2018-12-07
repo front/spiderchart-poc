@@ -49,6 +49,9 @@
   const large8 = [ ...all].sort((a,b) => { return b.gap - a.gap; }).slice(0, 8);
   console.log('8 largest gaps', large8);
 
+  const custom7 = all.filter((q, i) => [3, 5, 6, 7, 13, 17, 27].includes(i + 1));
+  console.log('Selected gaps', custom7);
+
 
   // Build charts
   function buildChart (data, n) {
@@ -118,4 +121,5 @@
   buildChart(small8, 2);
   buildChart(large5, 3);
   buildChart(large8, 4);
+  buildChart(custom7, 5);
 })();
